@@ -23,6 +23,11 @@ export const todoSlice = createSlice({
         },
         removeTodo: (state, action) => {
             state.todos = state.todos.filter((todo) => todo.id !== action.payload)
+        },
+        updateTodo: (state, action) => {
+            const newMsg = action.payload;
+            state.todos = state.todos.map((todo) => todo.id === action.payload ? todo.text = newMsg : todo);
+
         }
     }
 })
