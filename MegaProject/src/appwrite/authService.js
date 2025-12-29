@@ -55,4 +55,4 @@ export class AuthServie {
 
 const authService = new AuthServie()
 
-export default AuthServie;
+export default authService;
