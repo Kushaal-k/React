@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import authService from "./appwrite/authService.js";
 import { login, logout } from "./store/authSlice.js";
-import { Header, Footer } from './components/index.js';
+import { Header, Footer } from "./components/index.js";
 import "./App.css";
 
 function App() {
@@ -11,12 +11,12 @@ function App() {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		authService.getCurrentUser()
+		authService
+			.getCurrentUser()
 			.then((userData) => {
 				if (userData) {
 					dispatch(login({ userData }));
-				} 
-        else {
+				} else {
 					dispatch(logout());
 				}
 			})
@@ -26,18 +26,17 @@ function App() {
 			.finally(() => setLoading(false));
 	}, []);
 
-	return !loading ? 
-    (
-      <div className="min-h-screen flex flex-wrap content-between bg-gray-50">
-        <div className="w-full block">
-          <Header />
-          <main>
-          // TODO: <Outlet />
-          </main>
-          <Footer />
-        </div>
-      </div>
-    ) : null;
+	return !loading ? (
+		<div className='min-h-screen flex flex-wrap content-between bg-gray-50'>
+			<div className='w-full block'>
+				<Header />
+				<main>
+					// TODO: <Outlet />
+				</main>
+				<Footer />
+			</div>
+		</div>
+	) : null;
 }
 
 export default App;
